@@ -1,9 +1,9 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-# Python 3 server example
+#--------------------------------------------------------------------------------------
+#  Programa que implementa o Server
+#  Autor: Alejandro Gemin Rosales e Lucas Santos
+#  Disciplina: Redes II
+#  Data da ultima atualizacao: 05/08/21
+#--------------------------------------------------------------------------------------
 import random
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
