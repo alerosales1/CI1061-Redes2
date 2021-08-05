@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------
 #  Programa que implementa o Cliente
-#  Autor: Alejandro Gemin Rosales e Lucas Santos
+#  Autores: Alejandro Gemin Rosales e Lucas Santos
 #  Disciplina: Redes II
 #  Data da ultima atualizacao: 05/08/21
 #--------------------------------------------------------------------------------------
