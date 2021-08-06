@@ -1,3 +1,10 @@
+#--------------------------------------------------------------------------------------
+#  Programa que implementa o Server
+#  Autores: Alejandro Gemin Rosales e Lucas Sidnei dos Santos
+#  Disciplina: Redes II
+#  Data da ultima atualizacao: 05/08/21
+#--------------------------------------------------------------------------------------
+
 import random
 
 class diffie_hellman_des:

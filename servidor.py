@@ -1,3 +1,10 @@
+#--------------------------------------------------------------------------------------
+#  Programa que implementa o Server
+#  Autores: Alejandro Gemin Rosales e Lucas Sidnei dos Santos
+#  Disciplina: Redes II
+#  Data da ultima atualizacao: 05/08/21
+#--------------------------------------------------------------------------------------
+
 import socket 
 import sys
 from diffie_hellman import diffie_hellman_des
@@ -5,6 +12,10 @@ from des import DesKey
 import codecs
 
 class Connection:
+
+    '''
+       Essa classe permite com que grave as informações  
+    '''
 
     private_key = 0
     port_exit = 0
@@ -38,14 +49,13 @@ class MyServer():
             while True:
                 conn, addr = s.accept()
                 with conn:
-                    print('Connected by', addr)
+                    # print('Connected by', addr)
                     while True:
                         data = conn.recv(1024)
-                        print(data)
                         answer = ""
                         
-                        if data.decode('utf-8')=='init' and not addr in self.clients:
-                            print("entrei")
+                        if data.decode() == 'init' and not addr in self.clients:
+                            
                             self.clients[addr] = Connection(addr, 0)
 
                             p = self.__diffie_hellman_des.p
@@ -56,32 +66,24 @@ class MyServer():
                             mix = self.__diffie_hellman_des.calculate_primary_mix(random_num)
                             self.clients[ addr ].local_mix = mix
                             answer = str(mix)+';'+ str(p) +';'+ str(g)
-                            print(answer)
+                            conn.sendall(bytes(answer,'utf-8'))
+                            
 
                         elif self.clients[addr].is_private_key_ready:
-                            print('entrei2')
-                            message = self.clients[addr].private_key.decrypt(bytes.fromhex(data))
-                            print("Message from client: " + codecs.decode(message))
-
+                           
+                            if len(data.decode('utf-8')) > 0:
+                                message = self.clients[addr].private_key.decrypt(bytes.fromhex(data.decode('utf-8')))
+                                print("Sou servidor %s, recebi a mensagem %s" % (hostName,codecs.decode(message)))
+                                break
                         else:
-                            print('entrei3')
-                            private_key = self.__diffie_hellman_des.calculate_private_key( data.split(';')[0],
+                           
+                            private_key = self.__diffie_hellman_des.calculate_private_key(int(data.decode('utf-8').split(';')[0]),
                                                                     self.clients[addr].local_random_num)
 
                             self.clients[addr].private_key = DesKey(bytes(private_key, "utf-8"))
                             self.clients[addr].is_private_key_ready = True
 
-                            print("I know this client from " + addr)
-                            print("Private key on server is " + private_key)
-
-
-                        if not data:
-                            break
-                        
-                        if private_key != None:
-                            conn.sendall(answer)
-                            
-                        print("Sou servidor %s, recebi a mensagem %s" % (hostName,str(data)))
+                            # print("Private key on server is " + private_key)
 
 
 if __name__ == "__main__":

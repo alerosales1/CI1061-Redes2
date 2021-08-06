@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module cliente</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>cliente</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/lucassantos/ufpr/CI1061-Redes2/cliente.py">/home/lucassantos/ufpr/CI1061-Redes2/cliente.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="socket.html">socket</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>A&nbsp;função&nbsp;main&nbsp;tem&nbsp;como&nbsp;objetivo&nbsp;chamar&nbsp;a&nbsp;função&nbsp;que&nbsp;envia&nbsp;a&nbsp;mensagem&nbsp;ao&nbsp;servidor.<br>
+Nessa&nbsp;função&nbsp;é&nbsp;verificado&nbsp;se&nbsp;os&nbsp;parametros&nbsp;são&nbsp;todos&nbsp;passados,&nbsp;assim&nbsp;chamando&nbsp;a&nbsp;função&nbsp;principal</tt></dd></dl>
+ <dl><dt><a name="-run"><strong>run</strong></a>(nomeServidor, port, dados)</dt><dd><tt>Essa&nbsp;função&nbsp;tem&nbsp;como&nbsp;finalidade&nbsp;de&nbsp;enviar&nbsp;algum&nbsp;dado&nbsp;entrado&nbsp;pelo&nbsp;usuário&nbsp;ao&nbsp;servidor.<br>
+A&nbsp;função&nbsp;possui&nbsp;3&nbsp;parametros,&nbsp;sendo&nbsp;eles:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nomeServidor&nbsp;-&gt;&nbsp;o&nbsp;nome&nbsp;do&nbsp;servidor&nbsp;(DNS)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;port&nbsp;-&gt;&nbsp;a&nbsp;porta&nbsp;que&nbsp;vai&nbsp;ser&nbsp;utilizada<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dados&nbsp;-&gt;&nbsp;os&nbsp;dados&nbsp;que&nbsp;o&nbsp;cliente&nbsp;que&nbsp;enviar&nbsp;para&nbsp;o&nbsp;servidor<br>
+&nbsp;<br>
+&nbsp;<br>
+Após&nbsp;a&nbsp;função&nbsp;ser&nbsp;chamada&nbsp;ela&nbsp;realiza&nbsp;um&nbsp;busca&nbsp;para&nbsp;host_name&nbsp;com&nbsp;a&nbsp;função&nbsp;gethostbyname,<br>
+logo&nbsp;em&nbsp;seguida&nbsp;é&nbsp;aberto&nbsp;o&nbsp;socket&nbsp;por&nbsp;onde&nbsp;realiza&nbsp;as&nbsp;requisições&nbsp;para&nbsp;troca&nbsp;da&nbsp;chave&nbsp;secreta.<br>
+&nbsp;<br>
+Assim&nbsp;efetuará&nbsp;a&nbsp;conexão&nbsp;com&nbsp;o&nbsp;banco,&nbsp;e&nbsp;enviará&nbsp;uma&nbsp;mensagem&nbsp;para&nbsp;iniciar&nbsp;o&nbsp;processo&nbsp;de&nbsp;troca<br>
+da&nbsp;chave.<br>
+&nbsp;<br>
+Finalizando&nbsp;realiza&nbsp;a&nbsp;criptografia&nbsp;com&nbsp;base&nbsp;na&nbsp;chave&nbsp;definida&nbsp;e&nbsp;envia&nbsp;para&nbsp;o&nbsp;servidor&nbsp;os&nbsp;<br>
+dados&nbsp;que&nbsp;o&nbsp;usuário&nbsp;entrou.</tt></dd></dl>
+</td></tr></table>
+</body></html>
