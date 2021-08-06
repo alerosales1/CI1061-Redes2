@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------
-#  Programa que implementa o Cliente
-#  Autores: Alejandro Gemin Rosales e Lucas Sidneo dos Santos
+#  Programa que implementa o Cliente, por TCP/IP
+#  Autores: Alejandro Gemin Rosales e Lucas Sidnei dos Santos
 #  Disciplina: Redes II
 #  Data da ultima atualizacao: 05/08/21
 #--------------------------------------------------------------------------------------
