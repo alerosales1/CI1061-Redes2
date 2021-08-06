@@ -15,6 +15,9 @@ class Connection:
 
     '''
        Essa classe permite com que grave as informações  
+       sobre a conexão e em que a troca de mensagem para determinação
+       da chave secreta.
+
     '''
 
     private_key = 0
@@ -33,29 +36,38 @@ class Connection:
 
 class MyServer():
 
-    #dic to store already known clients
+    '''
+        A classe MyServer é responsavel pela implementação do servidor em si.
+        Nessa classe é encontrado a função run que tem como funcionalidade de fazer
+        o servidor ficar em execução, disponivel para recebimento de requisições externas
+        com a utilização da troca de chave secreta.
+    '''
+    
     clients = {}
     __diffie_hellman_des = diffie_hellman_des(23,5)
 
     def run(self,port):
 
-        hostName = socket.gethostname()
+        print('[+] Requisitando host_name')
+        host_name = socket.gethostname()
         
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.bind((hostName, port))
+            print("[+] Configurando servidor {%s} para escutar na porta {%d}" % (host_name,port))
+            s.bind((host_name, port))
             s.listen()
 
-            print("Servidor %s rodando na porta %d" % (hostName,port))
+            print("Servidor %s rodando na porta %d" % (host_name,port))
             while True:
                 conn, addr = s.accept()
                 with conn:
-                    # print('Connected by', addr)
+                    print('[+] Conectado pelo %s' % addr)
                     while True:
                         data = conn.recv(1024)
                         answer = ""
                         
                         if data.decode() == 'init' and not addr in self.clients:
                             
+                            print('[+] Requisição de iniciação de chave secreta inicializada')
                             self.clients[addr] = Connection(addr, 0)
 
                             p = self.__diffie_hellman_des.p
@@ -71,19 +83,19 @@ class MyServer():
 
                         elif self.clients[addr].is_private_key_ready:
                            
+                            print('[+] Servidor recebeu os dados do cliente')
                             if len(data.decode('utf-8')) > 0:
                                 message = self.clients[addr].private_key.decrypt(bytes.fromhex(data.decode('utf-8')))
-                                print("Sou servidor %s, recebi a mensagem %s" % (hostName,codecs.decode(message)))
+                                print("Sou servidor %s, recebi a mensagem %s" % (host_name,codecs.decode(message)))
                                 break
                         else:
-                           
+
+                            print('[+] Comunicação da chave secreta realizada com sucesso')
                             private_key = self.__diffie_hellman_des.calculate_private_key(int(data.decode('utf-8').split(';')[0]),
                                                                     self.clients[addr].local_random_num)
 
                             self.clients[addr].private_key = DesKey(bytes(private_key, "utf-8"))
                             self.clients[addr].is_private_key_ready = True
-
-                            # print("Private key on server is " + private_key)
 
 
 if __name__ == "__main__":

@@ -34,17 +34,20 @@ def run(nomeServidor,port,dados):
 
     try: 
 
+        print('[+] Requisitando host by name')
         registerDNS = socket.gethostbyname(nomeServidor)
       
         if registerDNS == None:
             raise Exception("Servidor não encontrado")
         
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-       
+            print('[+] Conectando com o servidor {%s} na porta {%d}' % ( registerDNS,port))
             s.connect((registerDNS,port))
+            print('[+] Faz requisição para iniciar troca de chave')
             s.sendall('init'.encode('utf-8'))
             data = s.recv(1024)
 
+            print('[+] Gera dados da chave secreta')
             diffie_hellman_des_obj = diffie_hellman_des(int(data.decode('utf-8').split(';')[1]), int(data.decode('utf-8').split(';')[2]))
             random_num = diffie_hellman_des_obj.generate_random_natural_number(4000, 8000)
             local_mix = diffie_hellman_des_obj.calculate_primary_mix(random_num)
@@ -56,7 +59,8 @@ def run(nomeServidor,port,dados):
             )
 
             private_key_obj = DesKey(bytes(private_key, "utf-8"))
-          
+            
+            print('[+] Chave secreta gerada com sucesso')
             s.sendall(bytes(str(answer),'utf-8'))
 
             rest = len(dados)%8
@@ -65,8 +69,10 @@ def run(nomeServidor,port,dados):
                 user_input = dados+' '*(8-rest)
            
             cripted_input = private_key_obj.encrypt(bytes(user_input,'utf-8'))
+            
+            print('[+] Enviando dados do usuario')
             s.sendall(cripted_input.hex().encode('utf-8'))
-            print('Mensagem {%s} enviada com sucesso !' %dados)
+            print('[+] Mensagem {%s} enviada com sucesso !' %dados)
 
 
     except Exception as e :

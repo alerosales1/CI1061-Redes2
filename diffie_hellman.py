@@ -8,7 +8,12 @@
 import random
 
 class diffie_hellman_des:
+    '''
+    
+        Essa classe define os parametros e funcionalidades que 
+        são nessarias para implementar as troca de chave secreta
 
+    '''
     def __init__(self, p, g):
 
         self.p = p
